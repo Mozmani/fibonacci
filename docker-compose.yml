@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+
+  fibonacci:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fibonacci
+    ports:
+      - "8081:8081"
+      - "5004:5004"
+    command: java -jar -Dspring.profiles.active=local application.jar
+
+networks:
+  default:
+    name: fibonacci
+
+volumes:
+  db-data:
+    external: false
